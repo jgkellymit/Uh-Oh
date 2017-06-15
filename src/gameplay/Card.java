@@ -16,7 +16,10 @@ public class Card {
     private final int number;
     private final String suit;
     
-    /**
+    //Rep Invariant- number is between 1-13 (a valid playing card number) and the suit is one of the four
+    //               playing card suits.
+    
+    /*
      * Ensures the representation invariant is not broken
      */
     private void checkRep(){
@@ -63,7 +66,7 @@ public class Card {
 
     /**
      * 
-     * @return the card number, 1-12: 1 being and Ace and 13 being a King
+     * @return the card number, 1-13: 1 being and Ace and 13 being a King
      */
     public int getNumber(){
         return this.number;
@@ -75,5 +78,42 @@ public class Card {
      */
     public String getSuit(){
         return this.suit;
+    }
+    
+    /**
+     * Compare to cards to see which one is bigger, given the trump suit and the suit led
+     * Assuming never comparing to cards that are both neither in the trump suit or the suitLed
+     * @param cardToCompare card to compare 
+     * @param trumpSuit
+     * @param suitLed
+     * @return true if other card is bigger, false if this card is bigger
+     */
+    public boolean compareCard(Card cardToCompare, String trumpSuit, String suitLed){
+        if (cardToCompare.getSuit() == trumpSuit){
+            if (this.suit != trumpSuit){ //other card is trump, this card isn't
+                return true;
+            }
+            else{
+                if (cardToCompare.getNumber() > this.getNumber()){ // both trump but other bigger
+                    return true;
+                }
+                return false;
+            }
+        }
+        else{
+            if (this.suit == trumpSuit){ //this is trump, other isn't
+                return false;
+            }
+            else{
+                if (cardToCompare.getSuit() == suitLed){ //both suits not trump, but other is suit that's led
+                    if (cardToCompare.getNumber() > this.getNumber()){//other card is suit that's led and bigger than this card
+                        return true;
+                    }
+                    if (this.suit != suitLed){ //other card is suit that's led, this isn't
+                        return true;
+                    }
+                }
+                return false; //other card isn't suit that's led or trump, this must be one of them so is bigger. 
+            }          
     }
 }
