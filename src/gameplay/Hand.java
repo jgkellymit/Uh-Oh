@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * A Hand is a group of Cards, representative of the Cards a player has throughout a game
+ * A Hand is a group of Cards, representative of the Cards a player has throughout a Trick
  * @author Jack
  *
  */
@@ -16,26 +16,12 @@ public class Hand {
     //Rep Invariant- Hand size is >=0 
     
     /*
-     * Enforcce Represenation invariant
+     * Enforce Representation invariant
      */
     private void checkRep(){
         assert handSize >= 0;
     }
     
-    
-    
-    /**
-     * A group of Cards
-     * @param howManyCards you want to start with in your hand
-     */
-    public Hand(int howManyCards) {
-       this.handSize = howManyCards;
-       this.myCards = new ArrayList<>();
-       for (int ii = 0; ii < this.handSize; ii++){
-           this.myCards.add(new Card());
-       }
-       checkRep();
-    }
     
     /**
      * A group of Cards
@@ -48,13 +34,27 @@ public class Hand {
     }
     
     /**
+     * A group of Cards generated randomly (could be duplicates)
+     * @param howManyCards you want to start with in your hand
+     */
+    public Hand(int howManyCards) {
+       this.handSize = howManyCards;
+       this.myCards = new ArrayList<>();
+       for (int ii = 0; ii < this.handSize; ii++){
+           this.myCards.add(new Card());
+       }
+       checkRep();
+    }
+
+    
+    /**
      * Remove a card from your Hand
      * @param cardToPlay
      * @throws IllegalArgumentException if you try to play a card not in your Hand
      */
     public Hand playCard(Card cardToPlay) throws IllegalArgumentException{
         if(this.myCards.remove(cardToPlay) == false){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(); //Card not in your Hand
         }
         checkRep();
         return new Hand(this.myCards);

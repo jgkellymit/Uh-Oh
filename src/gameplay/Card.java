@@ -32,7 +32,7 @@ public class Card {
     
     /**
      * Instantiates a specific card
-     * @param set_number- the number 1-12, with 1 being an Ace and 13 being a King
+     * @param set_number- the number 1-13, with 1 being an Ace and 13 being a King
      * @param set_suit- the suit
      */
     public Card(int set_number, String set_suit) {
@@ -83,6 +83,7 @@ public class Card {
     /**
      * Compare to cards to see which one is bigger, given the trump suit and the suit led
      * Assuming never comparing to cards that are both neither in the trump suit or the suitLed
+     * Comparing the same card returns false
      * @param cardToCompare card to compare 
      * @param trumpSuit
      * @param suitLed
@@ -114,6 +115,7 @@ public class Card {
                     }
                 }
                 return false; //other card isn't suit that's led or trump, this must be one of them so is bigger. 
-            }          
+            }  
+        }
     }
 }

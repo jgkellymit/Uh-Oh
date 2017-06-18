@@ -1,8 +1,8 @@
 package gameplay;
 
-public class Player {
+public class Game {
 
-    public Player() {
+    public Game() {
         // TODO Auto-generated constructor stub
     }
 
