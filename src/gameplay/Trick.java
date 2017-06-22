@@ -17,6 +17,10 @@ public class Trick {
     private final List<Card> cardsPlayed = new ArrayList<>();
     private final List<Player> playerPlayed = new ArrayList<>();
     
+    private void checkRep(){
+        assert numPlayers >= cardsPlayed.size();
+    }
+    
     /**
      * Instantiate a new Trick
      * @param numPlayers how many Players are playing the game 
@@ -36,13 +40,22 @@ public class Trick {
     public void playCard(Card cardPlayed, Player playerThatPlayed){
         cardsPlayed.add(cardPlayed);
         this.playerPlayed.add(playerThatPlayed);
+        
+        checkRep();
     }
     
     /**
-     * @return an unodifiable view of the Cards played during the trick. 
+     * @return an unmodifiable view of the Cards played during the trick. 
      */
-    public List<Card> getTrick(){
+    public List<Card> getCardsPlayed(){
         return Collections.unmodifiableList(this.cardsPlayed);
+    }
+    
+    /**
+     * @return an unmodifiable view of the Players played during the trick. Order is of who played first, not standard order. 
+     */
+    public List<Player> getPlayersPlayed(){
+        return Collections.unmodifiableList(this.playerPlayed);
     }
     
     /**
