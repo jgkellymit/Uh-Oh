@@ -81,8 +81,8 @@ public class Card {
     }
     
     /**
-     * Compare to cards to see which one is bigger, given the trump suit and the suit led
-     * Assuming never comparing to cards that are both neither in the trump suit or the suitLed
+     * Compare two cards to see which one is bigger, given the trump suit and the suit led
+     * Assuming never comparing two cards that are both neither in the trump suit or the suitLed
      * Comparing the same card returns false
      * @param cardToCompare card to compare 
      * @param trumpSuit
@@ -117,5 +117,16 @@ public class Card {
                 return false; //other card isn't suit that's led or trump, this must be one of them so is bigger. 
             }  
         }
+    }
+    
+    @Override
+    public String toString(){
+        Character suit = this.suit.toCharArray()[0];
+        String output =  "--------\n"
+                + "-"+ this.number + suit +"    -\n"
+                + "-      -\n"
+                + "-    " + this.number + suit + "-\n"
+                + "--------\n";
+        return output;
     }
 }

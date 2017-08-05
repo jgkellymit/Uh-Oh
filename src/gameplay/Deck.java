@@ -37,6 +37,7 @@ public class Deck {
     
     /**
      * @return a random Card from the Deck, decrement the size of the Deck. 
+     * @throws IndexOutOfofBoundsException if deck is empty
      */
     public Card getCard(){
         int deckSize = deck.size();
@@ -50,8 +51,12 @@ public class Deck {
      * Make a Hand of Cards to use during a Round of the game, remove those cards from the Deck.  
      * @param numCards how many Cards you want there to be in the Hand. 
      * @return a randomly generated Hand with numCards in it
+     * @throws IndexOutOfofBoundsException if deck doesn't have enough cards to make hand that size. 
      */
     public Hand makeHand(int numCards){
+        if (deck.size() < numCards){
+            throw new IndexOutOfBoundsException();
+        }
         List<Card> hand = new ArrayList<>();
         for (int ii = 0; ii < numCards; ii++){
             hand.add(this.getCard());
